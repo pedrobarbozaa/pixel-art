@@ -5,12 +5,6 @@ function App() {
   const [size, setSize] = useState(5)
   const [rows, setRows] = useState([1, 2, 3, 4, 5])
 
-  const cellStyle = {
-    backgroundColor: 'purple',
-    width: '50px',
-    height: '50px',
-  };
-
   const handleChange = ({ target: { value }}) => {
     setSize(value)
   };
@@ -21,13 +15,18 @@ function App() {
 
   return (
     <>
-    <h1>PIXEL ART</h1>
-    <input type="number" name="size" placeholder="Board size" value={size} onChange={handleChange}/>
-    <button type="button" onClick={onClick}>Change size</button>
-    { rows.map((row, i) =>     
-    <div key={i} style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {rows.map((row, i) => <div key={i} style={cellStyle} /> )}
-    </div>) }
+      <h1 className="title">PIXEL ART</h1>
+      <section className="resizer-container">
+        <input type="number" name="size" placeholder="Board size" value={size} onChange={handleChange}/>
+        <button type="button" onClick={onClick}>Change size</button>
+      </section>
+      <div className="board" >
+        { rows.map((row, i) =>     
+          <div className="row" key={i} >
+            {rows.map((row, i) => <div className='cell' key={i} /> )}
+          </div>) 
+        }
+      </div>
     </>
   )
 }
